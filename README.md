@@ -35,6 +35,8 @@ Aplikasi screener saham Indonesia (IDX) dengan analisis teknikal otomatis. Svelt
 
 ## Instalasi
 
+### macOS / Linux
+
 ```bash
 # Clone repo
 git clone https://github.com/dimasarmanu84/idx-screener.git
@@ -46,6 +48,19 @@ pip3 install -r requirements.txt
 
 # Install frontend dependencies
 cd ../web
+npm install
+```
+
+### Windows
+
+```cmd
+git clone https://github.com/dimasarmanu84/idx-screener.git
+cd idx-screener
+
+cd api
+pip install -r requirements.txt
+
+cd ..\web
 npm install
 ```
 
@@ -78,25 +93,37 @@ PUBLIC_GOOGLE_CLIENT_ID=xxx.apps.googleusercontent.com
 
 ## Menjalankan
 
-### Cara cepat (kedua server sekaligus)
+### macOS / Linux
 
 ```bash
+# Cara cepat (kedua server sekaligus)
 ./start.sh
+
+# Atau manual di 2 terminal terpisah:
+# Terminal 1 — Backend
+cd api && python3 -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+
+# Terminal 2 — Frontend
+cd web && npm run dev
 ```
 
-Buka http://localhost:5173
+### Windows
 
-### Manual (terpisah)
+```cmd
+REM Cara cepat (double-click atau jalankan dari CMD)
+start.bat
 
-```bash
-# Terminal 1 — Backend (port 8000)
+REM Atau manual di 2 CMD terpisah:
+REM CMD 1 — Backend
 cd api
-python3 -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
-# Terminal 2 — Frontend (port 5173)
+REM CMD 2 — Frontend
 cd web
 npm run dev
 ```
+
+Buka http://localhost:5173
 
 ## Jam Trading IDX
 
