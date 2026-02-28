@@ -1,16 +1,28 @@
 @echo off
 REM IDX Stock Screener — Start API + Web (Windows)
-REM Usage: start.bat
+REM Usage: double-click start.bat or run from cmd
 
 echo Starting IDX Stock Screener...
 echo.
+
+REM Check required .env files
+if not exist "%~dp0api\.env" (
+    echo [WARNING] api\.env not found!
+    echo   Copy api\.env.example to api\.env and fill in your values.
+    echo.
+)
+if not exist "%~dp0web\.env" (
+    echo [WARNING] web\.env not found!
+    echo   Copy web\.env.example to web\.env and fill in your Google Client ID.
+    echo.
+)
 
 REM Start API (FastAPI) in new window
 echo Starting API server (port 8000)...
 start "IDX-API" cmd /k "cd /d %~dp0api && python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000"
 
 REM Wait a moment for API to start
-timeout /t 2 /nobreak >nul
+timeout /t 3 /nobreak >nul
 
 REM Start Web (SvelteKit) in new window
 echo Starting Web server (port 5173)...

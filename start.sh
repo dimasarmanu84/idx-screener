@@ -15,10 +15,17 @@ cleanup() {
 
 trap cleanup SIGINT SIGTERM
 
+# Detect Python command (python3 for macOS/Linux, python for Windows)
+if command -v python3 &>/dev/null; then
+    PY=python3
+else
+    PY=python
+fi
+
 # Start API (FastAPI)
 echo "Starting API server (port 8000)..."
 cd "$ROOT/api"
-python3 -m uvicorn main:app --reload --host 0.0.0.0 --port 8000 &
+$PY -m uvicorn main:app --reload --host 0.0.0.0 --port 8000 &
 API_PID=$!
 
 # Start Web (SvelteKit)

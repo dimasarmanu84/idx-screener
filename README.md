@@ -68,7 +68,10 @@ npm install
 
 ### Backend (`api/.env`)
 
-Buat file `api/.env`:
+```bash
+cp api/.env.example api/.env
+# Edit api/.env, isi nilai yang sesuai
+```
 
 ```env
 # Telegram Bot (opsional)
@@ -82,12 +85,17 @@ JWT_SECRET=random-secret-string-kamu
 
 ### Frontend (`web/.env`)
 
-Buat file `web/.env`:
+```bash
+cp web/.env.example web/.env
+# Edit web/.env, isi Google Client ID
+```
 
 ```env
 # Sama dengan GOOGLE_CLIENT_ID di backend
 PUBLIC_GOOGLE_CLIENT_ID=xxx.apps.googleusercontent.com
 ```
+
+> **PENTING:** File `.env` tidak ikut di-push ke git. Kamu harus buat file ini manual dari `.env.example`.
 
 > Tanpa konfigurasi Google/Telegram, app tetap berjalan normal — fitur login dan Telegram saja yang disabled.
 
@@ -183,7 +191,8 @@ idx-screener/
 │   │   │   └── components/         # UI components
 │   │   └── routes/                 # Pages
 │   └── static/                     # PWA icons, manifest
-├── start.sh                # Start both servers
+├── start.sh                # Start both servers (macOS/Linux/Git Bash)
+├── start.bat               # Start both servers (Windows)
 └── .gitignore
 ```
 
